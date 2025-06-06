@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InterviewMate Bot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      background: url('https://i.ibb.co/fVKyJwGS/pexels-codioful-7135057.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .chat-container {
+      background: rgba(255, 255, 255, 0.9); /* slightly transparent white background */
+      width: 90%;
+      max-width: 720px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+    }
+    header {
+      background: #0052cc;
+      color: white;
+      padding: 1rem;
+      font-size: 1.5rem;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      text-align: center;
+      font-weight: 700;
+    }
+    .messages {
+      flex-grow: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #e5e5ea;
+    }
+    .message {
+      max-width: 75%;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      border-radius: 20px;
+      font-size: 1rem;
+      line-height: 1.4;
+      clear: both;
+      position: relative;
+      white-space: normal;
+    }
+    .message.user {
+      background: #0052cc;
+      color: white;
+      float: right;
+      border-bottom-right-radius: 0;
+    }
+    .message.bot {
+      background: #d1d5db;
+      color: #000;
+      float: left;
+      border-bottom-left-radius: 0;
+    }
+    .timestamp {
+      font-size: 0.75rem;
+      color: #666;
+      position: absolute;
+      bottom: -1.2rem;
+      right: 10px;
+    }
+    form {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+    }
+    input[type="text"] {
+      flex-grow: 1;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      border-bottom-left-radius: 10px;
+    }
+    input[type="text"]:focus {
+      outline: none;
+    }
+    button {
+      background: #0052cc;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0 20px;
+      cursor: pointer;
+      border-bottom-right-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #003a99;
+    }
+    .reset-link {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+    .reset-link a {
+      color: #0052cc;
+      text-decoration: none;
+    }
+    .reset-link a:hover {
+      text-decoration: underline;
+    }
+    .typing-indicator {
+      font-style: italic;
+      color: #888;
+      animation: blink 1s step-end infinite;
+     }
+     @keyframes blink {
+      50% { opacity: 0.5; }
+     }
+ </style>
+</head>
+<body>
+  <div class="chat-container">
+    <header>InterviewMate Bot 🤖</header>
+    <div class="messages" id="messages">
+      {% for msg in chat %}
+        <div class="message {{ msg.role }}" {% if loop.last and msg.role == 'bot' %}id="bot-message-container"{% endif %}>
+          {% if loop.last and msg.role == 'bot' %}
+            <span class="typing-indicator">Typing...</span>
+            <span class="bot-text" style="display: none;">{{ msg.content.strip() | safe }}</span>
+          {% else %}
+             <span class="bot-text">{{ msg.content.strip() | safe }}</span>
+          {% endif %}
+        <div class="timestamp">{{ msg.time }}</div>
+       </div>
+
+      {% endfor %}
+    </div>
+    <form method="POST" autocomplete="off">
+      <input type="text" name="user_input" placeholder="Type your message..." required />
+      <button type="submit">Send</button>
+    </form>
+    <div class="reset-link">
+      <a href="/reset">🔄 Reset Chat</a> | <a href="/logout">🚪 Logout</a>
+    </div>
+  </div>
+
+  <script>
+  const messagesDiv = document.getElementById('messages');
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+  const botContainer = document.getElementById("bot-message-container");
+  if (botContainer) {
+    const typingIndicator = botContainer.querySelector(".typing-indicator");
+    const botText = botContainer.querySelector(".bot-text");
+    const originalText = botText.textContent;
+    botText.textContent = "";
+
+    setTimeout(() => {
+      typingIndicator.style.display = "none";
+      botText.style.display = "inline";
+
+      let i = 0;
+      const speed = 20;
+
+      function typeText() {
+        if (i < originalText.length) {
+          botText.textContent += originalText.charAt(i);
+          i++;
+          setTimeout(typeText, speed);
+        }
+      }
+
+      typeText();
+    }, 500); // Delay before typing starts
+  }
+</script>
+</body>
+</html>

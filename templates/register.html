@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sign Up</title> 
+<style>
+    body {
+        background: url('https://i.ibb.co/fVKyJwGS/pexels-codioful-7135057.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 500px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        backdrop-filter: saturate(180%) blur(10px);
+    }
+    h1 {
+        text-align: center;
+        color: #2E8B57;
+        margin-bottom: 5px;
+    }
+    p.subtitle {
+        text-align: center;
+        color: gray;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s ease;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #4CAF50;
+    }
+    .radio-group {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        font-size: 16px;
+        margin-top: 6px;
+    }
+    .checkbox-group {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    button {
+        margin-top: 25px;
+        padding: 12px 0;
+        font-size: 18px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+    button:hover {
+        background-color: #3e8e41;
+    }
+    .message {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    .message.error {
+        background-color: #f8d7da;
+        color: #842029;
+    }
+    .message.success {
+        background-color: #d1e7dd;
+        color: #0f5132;
+    }
+    .login-link {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .login-link a {
+        color: #2E8B57;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 4px;
+    }
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Sign Up 🚀</h1>
+    <form method="POST" action="/register">
+        <label for="name">Enter Your Full Name 🧑</label>
+        <input type="text" id="name" name="name" value="{{ request.form.get('name', '') }}" required />
+
+        <label for="username">Enter The Username 🧾</label>
+        <input type="text" id="username" name="username" value="{{ request.form.get('username', '') }}" required />
+
+        <label for="email">Enter Your Email Address 📬</label>
+        <input type="email" id="email" name="email" value="{{ request.form.get('email', '') }}" required />
+
+        <label>Gender 💬</label>
+        <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" {% if request.form.get('gender') == 'Male' %}checked{% endif %} required> 🙋‍♂️ Male</label>
+            <label><input type="radio" name="gender" value="Female" {% if request.form.get('gender') == 'Female' %}checked{% endif %}> 🙋‍♀️ Female</label>
+            <label><input type="radio" name="gender" value="Prefer Not to Say" {% if request.form.get('gender') == 'Prefer Not to Say' %}checked{% endif %}> 🤖 Prefer Not to Say</label>
+        </div>
+
+        <label for="password">🔐 Create Password</label>
+        <input type="password" id="password" name="password" required />
+
+        <label for="confirm_password">🔁 Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" required />
+
+        <button type="submit">Register Now 📝</button>
+    </form>
+
+    {% if error %}
+        <div class="message error">{{ error }}</div>
+    {% endif %}
+    {% if success %}
+        <div class="message success">{{ success }}</div>
+    {% endif %}
+
+    <div class="login-link">
+        Already have an account?
+        <a href="/login">Login</a>
+    </div>
+</div>
+</body>
+</html>

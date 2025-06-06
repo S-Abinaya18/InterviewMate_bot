@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login</title>
+<style>
+    body {
+        background: url('https://i.ibb.co/fVKyJwGS/pexels-codioful-7135057.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0; 
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        width: 400px;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    h1 {
+        text-align: center;
+        color: #2E8B57;
+        margin-bottom: 10px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    label {
+        font-weight: 600;
+    }
+    input[type="text"],
+    input[type="password"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        border-color: #4CAF50;
+    }
+    button {
+        margin-top: 20px;
+        padding: 12px 0;
+        font-size: 18px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #3e8e41;
+    }
+    .message {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    .message.error {
+        background-color: #f8d7da;
+        color: #842029;
+    }
+    .register-link {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .register-link a {
+        color: #2E8B57;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 4px;
+    }
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>🔑 Login</h1>
+    <form method="POST" action="/login">
+        <label for="username">Username 🧾</label>
+        <input type="text" id="username" name="username" value="{{ request.form.get('username', '') }}" required />
+
+        <label for="password">Password 🔐</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Login 🔓</button>
+    </form>
+
+    {% if error %}
+        <div class="message error">{{ error }}</div>
+    {% endif %}
+
+    <div class="register-link">
+        New user? 
+        <a href="/register">Register Now!</a>
+    </div>
+</div>
+</body>
+</html>
