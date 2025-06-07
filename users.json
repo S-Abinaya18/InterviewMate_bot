@@ -12,5 +12,11 @@
         "email": "abinayas118@gmail.com",
         "gender": "Female",
         "password": "ab123cd45"
+    },
+    "abima": {
+        "name": "Abi",
+        "email": "abinayas118@gmail.com",
+        "gender": "Female",
+        "password": "ab12"
     }
 }

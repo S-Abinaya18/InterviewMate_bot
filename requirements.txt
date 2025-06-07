@@ -26,6 +26,7 @@ exceptiongroup==1.2.2
 faiss-cpu==1.11.0
 filelock==3.18.0
 Flask==3.1.1
+flask-cors==6.0.0
 fpdf==1.7.2
 fsspec==2025.5.0
 gitdb==4.0.12
@@ -70,7 +71,7 @@ networkx==3.4.2
 nibabel==5.3.2
 nipype==1.10.0
 nltk==3.8.1
-numpy
+numpy==1.26.4
 ollama==0.5.1
 openai==1.75.0
 openapi==2.0.0

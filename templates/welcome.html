@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome | InterviewMate</title>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .glass-container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      width: 500px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-group {
+      margin-top: 20px;
+    }
+
+    .button {
+      background-color: #ffffff33;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #ffffff66;
+    }
+
+    lottie-player {
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-container">
+    <lottie-player
+      src="https://assets2.lottiefiles.com/packages/lf20_zrqthn6o.json"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay
+      style="width: 300px; height: 300px;">
+    </lottie-player>
+    <h1>Welcome to InterviewMate</h1>
+    <p>Practice your HR, Technical, and Behavioral interviews with AI.</p>
+    <div class="btn-group">
+      <a href="/register" class="button">Register</a>
+      <a href="/login" class="button">Login</a>
+    </div>
+  </div>
+</body>
+</html>
