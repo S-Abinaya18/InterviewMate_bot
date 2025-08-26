@@ -14,7 +14,7 @@ app.config.update(
 )
 
 # Gemini API configuration
-GEMINI_API_KEY = "AIzaSyBwK1LVQ4DWszkRRBhy7grrX5Qw58AqvBA"
+GEMINI_API_KEY = "AIzaSyCVaSFmgrTOxxKbIwgXd5vz_a8xGr1fvvw"
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel(model_name="models/gemini-1.5-flash-latest")
 
